@@ -1,0 +1,15 @@
+{
+  "name": "clock-temperature",
+  "version": "1.0.0",
+  "description": "clock that shows the temperature collecting this data from an api",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "victor freitas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3"
+  }
+}

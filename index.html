@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/public/styles.css">
+  <title>Clock-Temperature</title>
+</head>
+<body>
+  <div class="container">
+    <form action="/" method="post">
+      <!-- <label>City:</label> -->
+      <input name="city" class="form-control" type="text" placeholder="Check the weather in your city">
+      <button class="btn btn-primary" type="submit">Get Weather</button>
+    </form>
+    <!-- <h1>23:23:23</h1> -->
+  </div>
+
+  <!-- JAVASCRIPT Goes here -->
+  <script>
+    const header = document.querySelector("h1")
+    const timeElement = document.createElement("h1");
+    document.querySelector(".container").appendChild(timeElement);
+
+    setInterval(function(){
+      //calculating current hour of the day 
+      let time = new Date();
+      //get hour
+      let hour = time.getHours();
+      console.log(hour)
+      //get minute
+      let minute = time.getMinutes();
+      console.log(minute)
+      if (minute >= 0 && minute < 10){
+        minute = "0" + minute;
+      }
+      //get seconds
+      let second = time.getSeconds();
+      if (second >= 0 && second < 10){
+        second = "0" + second;
+      }
+      console.log(second)
+      timeElement.innerText = `${hour}:${minute}:${second}`;
+    },1000)
+  </script>
+</body>
+</html>
