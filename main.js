@@ -10,11 +10,10 @@ const jsonParser = bodyParser.json();
 const path = require('path')
 //app is the express function
 const app = express();
-//port we use to host our application
-const port = process.env.PORT || 8080;
+
 //listening the port here
-app.listen(port, function(){
-  console.log(`The server is running on port ${port}.`) 
+app.listen(process.env.PORT || 8080, function(){
+  console.log(`The server is running on port ${process.env.PORT || 8080}.`) 
 })
 //connecting css external file 
 app.use('/public', express.static(path.join(__dirname, 'public')))
