@@ -31,6 +31,10 @@ app.post("/", function(req,res){
 
   req.body.city = "";
 
+  if (cityName === ""){
+    res.redirect("/")
+  } else {
+
   https.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=c26ae63fb3faa0a223918da72fed11a2`, function(response){
     let data = "";
    
@@ -70,9 +74,11 @@ app.post("/", function(req,res){
       }
       </style>
       <h3>${dataObj.name} is ${newTemp}C and it is showing ${dataObj.weather[0].description} but it feels like ${newTempFeel}C and humidity is ${dataObj.main.humidity}g.kg-1 and the wind speed is ${windSpeed}km/h</h3>
-      <a href="http://localhost:8080/">Go Back</a>
+      <a href="https://clock-temperature.herokuapp.com/">Go Back</a>
       `) 
-    })
-
+    }).on('error', (e) => {
+      console.error(e);
+    });
   })
+ }
 })
