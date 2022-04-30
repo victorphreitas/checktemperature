@@ -7,7 +7,8 @@ const bodyParser = require("body-parser");
 //json parser
 const jsonParser = bodyParser.json();
 //requiring absolute path
-const path = require('path')
+const path = require('path');
+const { redirect } = require("express/lib/response");
 //app is the express function
 const app = express();
 
@@ -37,14 +38,15 @@ app.post("/", function(req,res){
 
   https.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=c26ae63fb3faa0a223918da72fed11a2`, function(response){
     let data = "";
-   
-    response.on("data", function(chunk){
+
+   response.on("data", function(chunk){
       data += chunk
       let dataObj = JSON.parse(data)
       // console.log(dataObj.main.temp)
       // console.log(dataObj.name)
       // console.log(dataObj.wind.speed)
       // console.log(dataObj.weather[0].description)
+      // console.log(dataObj)
       let newTemp = (dataObj.main.temp - 273).toFixed(2)
       let newTempFeel = (dataObj.main.feels_like - 273).toFixed(2)
       let windSpeed = ((dataObj.wind.speed)*3.6).toFixed(2)
@@ -74,11 +76,9 @@ app.post("/", function(req,res){
       }
       </style>
       <h3>${dataObj.name} is ${newTemp}C and it is showing ${dataObj.weather[0].description} but it feels like ${newTempFeel}C and humidity is ${dataObj.main.humidity}g.kg-1 and the wind speed is ${windSpeed}km/h</h3>
-      <a href="https://clock-temperature.herokuapp.com/">Go Back</a>
+      <a href="https://localhost:8080/">Go Back</a>
       `) 
-    }).on('error', (e) => {
-      console.error(e);
-    });
+    }) 
   })
  }
 })
